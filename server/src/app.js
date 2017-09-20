@@ -14,4 +14,11 @@ app.get('/status', (req, res) => {
     });
 });
 
+app.post('/register', (req, res) => {
+    console.log('registration request has come for', req.body.email);
+    res.send({
+        message: `Hello ${req.body.email}, you've been registered`
+    });
+});
+
 app.listen(process.env.PORT || 8081);

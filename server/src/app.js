@@ -1,24 +1,25 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const morgan = require('morgan');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const morgan = require('morgan')
+const {sequelize} = require('./models')
+const config = require('./config/config')
 
-const app = express();
-app.use(morgan('combined'));
-app.use(bodyParser.json());
-app.use(cors());
+const app = express()
+app.use(morgan('combined'))
+app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/status', (req, res) => {
-    res.send({
-        message: 'Hello world!'
-    });
-});
+	res.send({
+    message: 'Hello world!'
+	})
+})
 
-app.post('/register', (req, res) => {
-    console.log('registration request has come for', req.body.email);
-    res.send({
-        message: `Hello ${req.body.email}, you've been registered`
-    });
-});
+require('./routes')(app)
 
-app.listen(process.env.PORT || 8081);
+sequelize.sync()
+.then(() => {
+  app.listen(config.port)
+  console.log(`Server started on ${config.port}`)
+})

@@ -5,7 +5,7 @@
         <v-toolbar flat class="cyan accent-4" dark>
           <v-toolbar-title
             @click="fill">
-            Register
+            Login
           </v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
@@ -13,7 +13,8 @@
             <v-text-field
               label="Name"
               v-model="name"
-              :rules="nameRules">
+              :rules="nameRules"
+              :counter="20">
             </v-text-field>
             <v-text-field
               label="Email"
@@ -30,7 +31,7 @@
             <v-btn
               @click="submit"
               :class="{ cyan: valid, red: !valid }">
-              Submit
+              Login
             </v-btn>
             <v-btn
               @click="clear">
@@ -67,10 +68,10 @@ export default {
     }
   },
   methods: {
-    async register () {
-      console.log('register was clicked', this.email, this.password);
+    async login () {
+      console.log('login was clicked', this.email, this.password);
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           name: this.name,
           email: this.email,
           password: this.password
@@ -87,7 +88,7 @@ export default {
     },
     submit () {
       if (this.$refs.form.validate()) {
-        this.register()
+        this.login()
         this.$refs.form.reset()
       }
     },

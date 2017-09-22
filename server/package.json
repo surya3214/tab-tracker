@@ -8,11 +8,14 @@
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.18.1",
     "cors": "^2.8.4",
     "eslint": "^4.7.1",
     "express": "^4.15.4",
     "joi": "^11.0.2",
+    "jsonwebtoken": "^8.0.1",
     "morgan": "^1.8.2",
     "nodemon": "^1.12.1",
     "sequelize": "^4.9.0",
